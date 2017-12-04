@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>A really gouch app</title>
+    <script src="login.js"></script>
+  </head>
+  <body>
+    <h1>Comsci Electron project</h1>
+    <p>SANITIZE INPUTS</p>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <h3>Sign in</h3>
+    <form id="loginform">
+      Username:
+      <br>
+      <input type="text" id="username" autofocus>
+      <br>
+      Password:
+      <br>
+      <input type="password" id="password">
+      <br><br>
+      <input type="button" value="Login" onclick="startlogin()">
+    </form>
+    <a href="signup.html">Sign Up</a>
+
+    <script>
+      if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null){
+        document.location.href = "main.html";
+      }
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

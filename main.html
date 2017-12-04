@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>A really gouch app</title>
+    <script src="login.js"></script>
+    <script src="messager.js"></script>
+  </head>
+  <body>
+    <h1>Comsci Electron project</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <h3>Login Token:</h3>
+    <p id="Tokenhere">Login token here</p>
+    <br>
+    <h3>User ID:</h3>
+    <p id="IDhere">User ID here</p>
+    <br>
+
+    <form>
+      <select id="chatselect" onchange="changeChats(this.value)">
+        <option value="">Select a chat:</option>
+      </select>
+    </form>
+
+    <br>
+
+    <form>
+        <input type="button" value="Logout" onclick="logout()">
+    </form>
+
+    <p id="test">Select a chat to begin</p>
+
+    <script>
+      getToken();
+      updateSelecton();
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

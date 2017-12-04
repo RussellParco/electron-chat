@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>A really gouch app</title>
+    <script src="login.js"></script>
+  </head>
+  <body>
+    <h1>Comsci Electron project</h1>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <h3>Sign Up</h3>
+    <form id="signupform">
+      First name:
+      <br>
+      <input type="text" id="firstname" autofocus>
+      <br>
+      Last name:
+      <br>
+      <input type="text" id="lastname">
+      <br>
+      Email:
+      <br>
+      <input type="email" id="email">
+      <br>
+      Username:
+      <br>
+      <input type="text" id="username">
+      <br>
+      Password:
+      <br>
+      <input type="password" id="password">
+      <br><br>
+      <input type="button" value="Submit" onclick="startSignup()">
+      <a href="index.html">Go back</a>
+    </form>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
