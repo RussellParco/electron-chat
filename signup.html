@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>A really gouch app</title>
+    <title>ElectroChat</title>
     <script src="login.js"></script>
+    <link rel="stylesheet" type="text/css" href="Signup.css">
   </head>
   <body>
-    <h1>Comsci Electron project</h1>
+    <h1>ElectroChat</h1>
     <!-- All of the Node.js APIs are available in this renderer process. -->
     <h3>Sign Up</h3>
+    <div>
     <form id="signupform">
       First name:
       <br>
@@ -33,7 +35,7 @@
       <input type="button" value="Submit" onclick="startSignup()">
       <a href="index.html">Go back</a>
     </form>
-
+  </div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')

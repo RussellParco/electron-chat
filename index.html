@@ -2,13 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>A really gouch app</title>
+    <title>ElectroChat</title>
     <script src="login.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
-    <h1>Comsci Electron project</h1>
-    <p>SANITIZE INPUTS</p>
+    <h1>ElectroChat</h1>
+    <b>SANITIZE INPUTS</b>
     <!-- All of the Node.js APIs are available in this renderer process. -->
+    <div>
     <h3>Sign in</h3>
     <form id="loginform">
       Username:
@@ -22,7 +24,7 @@
       <input type="button" value="Login" onclick="startlogin()">
     </form>
     <a href="signup.html">Sign Up</a>
-
+    </div>
     <script>
       if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null){
         document.location.href = "main.html";
