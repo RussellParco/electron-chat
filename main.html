@@ -32,25 +32,27 @@
     <div class="container">
       <!-- Trigger the modal with a button -->
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addChat">Create Chat</button>
-
       <!-- Modal -->
       <div class="modal fade" id="addChat" role="dialog">
         <div class="modal-dialog">
-
           <!-- Modal content-->
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Modal Header</h4>
+              <h4 class="modal-title">Create Chat</h4>
             </div>
             <div class="modal-body">
-              <p>Some text in the modal.</p>
+              <form id="createchatform">
+                Chat Name
+                <br>
+                <input type="text" id="createchatname">
+              </form>
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-default" onclick="createChat()" data-dismiss="modal">Create</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -59,6 +61,33 @@
           <option value="">Select a chat:</option>
         </select>
       </form>
+
+      <div class="container">
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addMember">Add Member</button>
+        <!-- Modal -->
+        <div class="modal fade" id="addMember" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add a user to this chat</h4>
+              </div>
+              <div class="modal-body">
+                <form id="createchatform">
+                  Username
+                  <br>
+                  <input type="text" id="addmemberusername">
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" onclick="addMember()" data-dismiss="modal">Add User</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
     </div>
 
