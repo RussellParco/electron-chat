@@ -112,7 +112,7 @@ function signUp(first, last, email, user, pass){
   request.onreadystatechange = function () {
     if (request.readyState === 4 && request.status === 200) {
       json = JSON.parse(request.responseText);
-      alert(json.Status);
+      //alert(json.Status);
       document.location.href = "index.html";
       //callback.apply(this,[json]);
     } else if (request.status === 400 && request.readyState === 4) {
