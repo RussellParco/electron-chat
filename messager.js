@@ -3,9 +3,12 @@ var userID;
 Token = localStorage.getItem("Token");
 userID = localStorage.getItem("userID");
 
-function getMessages(ID){
+defaultstartofchat = "<p><i>Begining of Chat</i></p>";
+defaultemptychat = "<p><i>This chat is empty, be the first person to say something</i></p>";
+refreshrate = 250;
+/*function getMessages(ID){
 
-}
+}*/
 
 function updateSelecton(){  //change this to use POST
   var xhttp;
@@ -46,6 +49,7 @@ function changeChats(chatID){ //change or remove this
   else {
     document.getElementById("test").innerHTML = 'input from option: ' + chatID;
   }
+  document.getElementById("chatmainblock").innerHTML = "";
 }
 
 function createChat() {
@@ -102,13 +106,13 @@ function addMember() {
     request.setRequestHeader("Content-type", "application/json");
     request.onreadystatechange = function () {
       if (request.readyState === 4 && request.status === 200) {
-        json = JSON.parse(request.responseText);
+        //json = JSON.parse(request.responseText);
         //alert(json.Status);
-        var list = document.getElementById("chatselect");
-        var option = document.createElement('option');
-        option.text = newChatname;
-        option.value = json.chatID;
-        list.add(option);
+        //var list = document.getElementById("chatselect");
+        //var option = document.createElement('option');
+        //option.text = newChatname;
+        //option.value = json.chatID;
+        //list.add(option);
         //handle responseText
 
       } else if (request.status === 401 && request.readyState === 4) {
@@ -122,5 +126,73 @@ function addMember() {
     var data = JSON.stringify({"chatID": chatID, "Token": Token, "memberUsername":memberUsername});
     request.send(data);
     document.getElementById("addmemberusername").value = "";
+  }
+}
+
+function sendMessage(e) {
+  var message = document.getElementById("chatinput").value;
+  var chatselect = document.getElementById("chatselect");
+  var chatID = chatselect.options[ chatselect.selectedIndex ].value;
+  if (e.keyCode == 13 && message != "" && chatID != "") { //change this for security reasons later?
+    var request = new XMLHttpRequest();
+    var url = "http://jordanscrivo.ga/sendMessage";
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function () {
+      if (request.readyState === 4 && request.status === 200) {
+        json = JSON.parse(request.responseText);
+        //alert(json.Status);
+        //make it so that sent messages are grey and messages received by the server are black
+
+      } else if (request.status === 401 && request.readyState === 4) {
+        alert("Server returned 401");
+      } else if (request.readyState === 4 && request.status === 500) {
+        alert("Server returned 500");
+      } else if (request.status === 400 && request.readyState === 4) {
+        //alert("User does not exist or is already a member of this chat");
+      }
+    }
+    var data = JSON.stringify({"chatID": chatID, "Token": Token, "userMessage":message});
+    request.send(data);
+    document.getElementById("chatinput").value = "";
+  }
+}
+
+function receiveMessage() {
+  var chatselect = document.getElementById("chatselect");
+  var chatID = chatselect.options[ chatselect.selectedIndex ].value;
+
+  if (chatID != ""){
+    var request = new XMLHttpRequest();
+    var url = "http://jordanscrivo.ga/receiveMessage";
+    request.open("POST", url, true);
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function () {
+      if (request.readyState === 4 && request.status === 200) {
+        json = JSON.parse(request.responseText);
+        var chatboxcode = defaultstartofchat;
+
+        var updateChatmessages = function(item, index) {
+          chatboxcode = chatboxcode + "<br><p><b>" + item.senderName + "</b> - " + item.messageContent + "</p>";
+        }
+        json.forEach(updateChatmessages);
+
+        document.getElementById("chatmainblock").innerHTML = chatboxcode;
+
+        setTimeout(receiveMessage, refreshrate);
+
+      } else if (request.status === 401 && request.readyState === 4) {
+        alert("Server returned 401");
+      } else if (request.readyState === 4 && request.status === 500) {
+        alert("Server returned 500");
+      } else if (request.status === 204 && request.readyState === 4) {
+        document.getElementById("chatmainblock").innerHTML = defaultemptychat;
+        setTimeout(receiveMessage, refreshrate);
+      }
+    }
+    var data = JSON.stringify({"chatID": chatID, "Token": Token});
+    request.send(data);
+  } else {
+    setTimeout(receiveMessage, refreshrate);
   }
 }
