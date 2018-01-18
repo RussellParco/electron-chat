@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>A really gouch app</title>
     <script src="login.js"></script>
     <script src="messager.js"></script>
+    <link rel="stylesheet" type="text/css" href="messenger.css">
 
-    <script>window.$ = window.jQuery = require('./jquery-3.2.1.min.js');</script>
+    <script>
+        window.$ = window.jQuery = require('./jquery-3.2.1.min.js');
+    </script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -17,105 +21,105 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  </head>
-  <body>
-    <h1>Comsci Electron project</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    <h3>Login Token:</h3>
-    <p id="Tokenhere">Login token here</p>
-    <br>
-    <h3>User ID:</h3>
-    <p id="IDhere">User ID here</p>
-    <br>
+</head>
+
+<body>
+    <p id="Tokenhere" style="display:none">Login token here</p>
+    <p id="IDhere" style="display:none">User ID here</p>
 
 
-    <div class="container">
-      <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addChat">Create Chat</button>
-      <!-- Modal -->
-      <div class="modal fade" id="addChat" role="dialog">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addChat" role="dialog">
         <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Create Chat</h4>
-            </div>
-            <div class="modal-body">
-              <form id="createchatform">
-                Chat Name
-                <br>
-                <input type="text" id="createchatname">
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" onclick="createChat()" data-dismiss="modal">Create</button>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form>
-        <select id="chatselect" onchange="changeChats(this.value)">
-          <option value="">Select a chat:</option>
-        </select>
-      </form>
-
-      <div class="container">
-        <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addMember">Add Member</button>
-        <!-- Modal -->
-        <div class="modal fade" id="addMember" role="dialog">
-          <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add a user to this chat</h4>
-              </div>
-              <div class="modal-body">
-                <form id="createchatform">
-                  Username
-                  <br>
-                  <input type="text" id="addmemberusername">
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="addMember()" data-dismiss="modal">Add User</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Chat</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="createchatform">
+                        Chat Name
+                        <br>
+                        <input type="text" id="createchatname">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="createChat()" data-dismiss="modal">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-          </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="addMember" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add a user to this chat</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createchatform">
+                            Username
+                            <br>
+                            <input type="text" id="addmemberusername">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" onclick="addMember()" data-dismiss="modal">Add User</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
-
-    <br>
-
-    <div>
-      <div id="chatmainblock"></div>
-      <div>
-        <input type="text" id="chatinput" onkeypress="sendMessage(event)">
-      </div>
+    <div id="chat-container">
+        <div class="top-bar" style="height: 50px; width: 100%">
+            <!-- Trigger the modal with a button -->
+            <button data-toggle="modal" data-target="#addMember" style="height: 100%; width: 50px; float:right; background: none; border: none;"><img src= "https://www.pprlmeraghar.com/applogic/src/images/mck-icon-add-member.png" style="height:100%; width:100%"></button>
+        </div>
+        <div id="chatmainblock">
+            <h1 style="text-align:center; margin-top: 10%; font-family: Comic Sans MS;">Choose a Chat to Get Started ...</h1>
+        </div>
+        <div id="input-container">
+            <input value="Write a Message ..." type="text" id="chatinput" onkeypress="sendMessage(event)">
+        </div>
     </div>
 
 
-    <br>
+    <div style="background-color:  rgb(38, 40, 43); height: 100vh; width:30% ">
+        <!-- Trigger the modal with a button -->
+        <div class="top-bar" style="height : 50px; width: 100%; ;">
+            <button type="button" data-toggle="modal" data-target="#addChat" style="height: 90%; width: 50px; float:right; background: none; border: none; margin-top: 3px;"><img src= "https://www.markssupply.ca/ASSETS/WEB_THEMES/MARKSSUPPLY/images/plus.png" style="height:100%; width:100%"></button>
+            <button type="button" onclick="logout()" style="height: 90%; width: 60px; float:left; background: none; border: none; margin-top: 3px;"><img src= "https://www.materialui.co/materialIcons/action/lock_grey_192x192.png" style="height:100%; width:100%"></button>
+        </div>
+        <div id="choice-container"></div>
+        <div>
 
-    <form>
-        <input type="button" value="Logout" onclick="logout()">
-    </form>
+            <form>
+                <select id="chatselect" onchange="changeChats(this.value)">
+              <option value="">Select a chat:</option>
+            </select>
+            </form>
+        </div>
+    </div>
 
-    <p id="test">Select a chat to begin</p>
 
     <script>
-      getToken();
-      updateSelecton();
-      receiveMessage();
-      // You can also require other files to run in this process
-      require('./renderer.js')
+        getToken();
+        updateSelecton();
+        receiveMessage();
+        // You can also require other files to run in this process
+        require('./renderer.js')
     </script>
-  </body>
-</html>
+</body>
+
+</html
