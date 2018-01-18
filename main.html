@@ -2,9 +2,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>A really gouch app</title>
+    <title>ElectroChat</title>
     <script src="login.js"></script>
     <script src="messager.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
 
     <script>window.$ = window.jQuery = require('./jquery-3.2.1.min.js');</script>
 
@@ -19,16 +20,21 @@
 
   </head>
   <body>
-    <h1>Comsci Electron project</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    <h3>Login Token:</h3>
-    <p id="Tokenhere">Login token here</p>
-    <br>
-    <h3>User ID:</h3>
-    <p id="IDhere">User ID here</p>
-    <br>
+    <div class="jumbotron">
+      <h1>ElectroChat</h1>
+    </div>
+    <div class="container">
+      <!-- All of the Node.js APIs are available in this renderer process. -->
+      <h3>Login Token:</h3>
+      <p id="Tokenhere">Login token here</p>
+      <h3>User ID:</h3>
+      <p id="IDhere">User ID here</p>
 
-
+    <form>
+        <input type="button" class="btn" value="Logout" onclick="logout()">
+    </form>
+    </div>
+    <br>
     <div class="container">
       <!-- Trigger the modal with a button -->
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addChat">Create Chat</button>
@@ -104,11 +110,9 @@
 
     <br>
 
-    <form>
-        <input type="button" value="Logout" onclick="logout()">
-    </form>
 
-    <p id="test">Select a chat to begin</p>
+
+    <!--<p id="test">Select a chat to begin</p>-->
 
     <script>
       getToken();
