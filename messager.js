@@ -1,15 +1,19 @@
 var Token;
 var userID;
 var selection;
+var scrolled = false;
 Token = localStorage.getItem("Token");
 userID = localStorage.getItem("userID");
 
 defaultstartofchat = "<p><i>Begining of Chat</i></p>";
 defaultemptychat = "<p><i>This chat is empty, be the first person to say something</i></p>";
 refreshrate = 250;
-/*function getMessages(ID){
 
-}*/
+$(document).ready(function() {
+    document.getElementById("chatmainblock").addEventListener("scroll", function() {
+        scrollled = true;
+    });
+});
 
 function updateSelecton() { //change this to use POST
     var xhttp;
@@ -36,6 +40,7 @@ function updateSelecton() { //change this to use POST
                         chatOption.addEventListener("click", function(event) {
                             chatselect.options[chatselect.selectedIndex].value = chatOption.id;
                             document.getElementById("chat-title").innerHTML = option.text;
+                            scrolled = false;
                             updateMembers(chatOption.id);
                         });
                     }
@@ -164,6 +169,7 @@ function sendMessage(e) {
         var data = JSON.stringify({ "chatID": chatID, "Token": Token, "userMessage": message });
         request.send(data);
         document.getElementById("chatinput").value = "";
+        document.getElementById("chatmainblock").scrollTop = document.getElementById("chatmainblock").scrollHeight;
     }
 }
 
@@ -183,7 +189,9 @@ function receiveMessage() {
 
                 var updateChatmessages = function(item, index) {
                     chatboxcode = chatboxcode + "<br><p><b>" + item.senderName + "</b> - " + item.messageContent + "</p>";
-                }
+
+
+                };
                 json.forEach(updateChatmessages);
 
                 document.getElementById("chatmainblock").innerHTML = chatboxcode;
@@ -204,9 +212,15 @@ function receiveMessage() {
     } else {
         setTimeout(receiveMessage, refreshrate);
     }
+    if (scrolled != true) {
+        document.getElementById("chatmainblock").scrollTop = document.getElementById("chatmainblock").scrollHeight;
+
+    }
+
 }
 
 function updateMembers(Id) { //change this to use POST
+    $("#members").html("");
     var xhttp;
     xhttp = new XMLHttpRequest();
 
