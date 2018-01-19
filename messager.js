@@ -1,5 +1,6 @@
 var Token;
 var userID;
+var selection;
 Token = localStorage.getItem("Token");
 userID = localStorage.getItem("userID");
 
@@ -32,7 +33,11 @@ function updateSelecton() { //change this to use POST
                         chatOption.innerHTML = item.Chatname;
 
                         document.getElementById("choice-container").appendChild(chatOption);
-                        // chatOption.addEventListener("click", changeChats(option.chatID));
+                        chatOption.addEventListener("click", function(event) {
+                            chatselect.options[chatselect.selectedIndex].value = chatOption.id;
+                            document.getElementById("chat-title").innerHTML = option.text;
+                            updateMembers(chatOption.id);
+                        });
                     }
                     //just use for loop?
                 json.forEach(updateChats);
@@ -199,4 +204,38 @@ function receiveMessage() {
     } else {
         setTimeout(receiveMessage, refreshrate);
     }
+}
+
+function updateMembers(Id) { //change this to use POST
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(xhttp.responseText);
+                json = JSON.parse(xhttp.responseText);
+                var updatemem = function(item, index) {
+
+                        var member = document.createElement('div');
+                        member.className = "member";
+                        member.id = item.chatID;
+                        member.innerHTML = item.memberName;
+
+                        document.getElementById("members").appendChild(member);
+                    }
+                    //just use for loop?
+                json.forEach(updatemem);
+            } else if (this.readyState == 4 && this.status == 401) {
+                alert('unauthorized');
+            }
+            //remove these later
+            else if (this.readyState == 4 && this.status == 500) {
+                alert('Error');
+            }
+        }
+        //change all this to POST getis not a good idea
+    xhttp.open("POST", "http://jordanscrivo.ga/getmembers", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    var data = JSON.stringify({ "chatID": Id, "Token": Token });
+    xhttp.send(data);
 }

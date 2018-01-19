@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>A really gouch app</title>
+    <title>ElectroChat</title>
     <script src="login.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 
 
     <!-- Latest compiled and minified CSS -->
@@ -14,25 +15,28 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   </head>
   <body>
-    <h1>Comsci Electron project</h1>
-    <p>SANITIZE INPUTS</p>
+    <div class="jumbotron">
+      <h1>ElectroChat</h1>
+    </div>
     <!-- All of the Node.js APIs are available in this renderer process. -->
+    <div class="well">
     <h3>Sign in</h3>
     <form id="loginform">
       Username:
       <br>
-      <input type="text" id="username" autofocus>
+      <input type="text" class="form-control" id="username" autofocus>
       <br>
       Password:
       <br>
-      <input type="password" id="password">
-      <br><br>
-      <input type="button" value="Login" onclick="startlogin()">
-    </form>
-    <a href="signup.html">Sign Up</a>
-
+      <input type="password" class="form-control" id="password">
+      <br>
+      <input type="button" class="btn" value="Login" onclick="startlogin()">
+      <a href="signup.html" class="btn-link">Sign Up</a>
+      </form>
+    </div>
     <script>
       if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null){
         document.location.href = "main.html";

@@ -3,10 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>A really gouch app</title>
+    <title>ElectroChat</title>
     <script src="login.js"></script>
     <script src="messager.js"></script>
     <link rel="stylesheet" type="text/css" href="messenger.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
 
     <script>
         window.$ = window.jQuery = require('./jquery-3.2.1.min.js');
@@ -80,14 +81,24 @@
         </div>
 
     </div>
-
-    <div id="chat-container">
+    <div id="members-container">
         <div class="top-bar" style="height: 50px; width: 100%">
             <!-- Trigger the modal with a button -->
             <button data-toggle="modal" data-target="#addMember" style="height: 100%; width: 50px; float:right; background: none; border: none;"><img src= "https://www.pprlmeraghar.com/applogic/src/images/mck-icon-add-member.png" style="height:100%; width:100%"></button>
         </div>
+        <h3 style="text-align:center;  width: 75%; margin:auto;margin-top:25px; border-bottom:rgb(98, 129, 148) solid 1px; ">Chat </br>Members</h3>
+        <div id="members">
+
+        </div>
+    </div>
+
+    <div id="chat-container">
+        <div class="top-bar" style="height: 50px; width: 100%">
+            <h3 id="chat-title">ElectroChat</h3>
+        </div>
         <div id="chatmainblock">
-            <h1 style="text-align:center; margin-top: 10%; font-family: Comic Sans MS;">Choose a Chat to Get Started ...</h1>
+            <h1 style="text-align:center; margin-top: 10%;
+        ">Choose a Chat to Get Started ...</h1>
         </div>
         <div id="input-container">
             <input value="Write a Message ..." type="text" id="chatinput" onkeypress="sendMessage(event)">
@@ -95,23 +106,25 @@
     </div>
 
 
-    <div style="background-color:  rgb(38, 40, 43); height: 100vh; width:30% ">
+    <div style="background-color:  rgb(38, 40, 43); height: 100vh; width:25%; margin:0px">
         <!-- Trigger the modal with a button -->
         <div class="top-bar" style="height : 50px; width: 100%; ;">
             <button type="button" data-toggle="modal" data-target="#addChat" style="height: 90%; width: 50px; float:right; background: none; border: none; margin-top: 3px;"><img src= "https://www.markssupply.ca/ASSETS/WEB_THEMES/MARKSSUPPLY/images/plus.png" style="height:100%; width:100%"></button>
             <button type="button" onclick="logout()" style="height: 90%; width: 60px; float:left; background: none; border: none; margin-top: 3px;"><img src= "https://www.materialui.co/materialIcons/action/lock_grey_192x192.png" style="height:100%; width:100%"></button>
         </div>
         <div id="choice-container"></div>
-        <div>
 
-            <form>
-                <select id="chatselect" onchange="changeChats(this.value)">
-              <option value="">Select a chat:</option>
+        <form style="display: none;">
+            <select style="display: none;" id="chatselect" onchange="changeChats(this.value)">
+              <option  style="display: none;"value="">Select a chat:</option>
             </select>
-            </form>
-        </div>
+        </form>
+
     </div>
 
+
+
+    <!--<p id="test">Select a chat to begin</p>-->
 
     <script>
         getToken();

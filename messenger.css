@@ -6,14 +6,14 @@
 #chatmainblock {
     height: 80%;
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
     background-color: rgb(54, 57, 62);
     padding: 30px;
 }
 
 #chat-container {
     height: 100vh;
-    width: 70%;
+    width: 55%;
     float: right;
     margin: 0px;
     background-color: rgb(54, 57, 62);
@@ -25,7 +25,6 @@
 }
 
 #input-container {
-    height: 15%;
     width: 90%;
     margin: auto;
     margin-top: 5px;
@@ -44,18 +43,83 @@
 }
 
 #choice-container {
-    height: 100%;
+    height: 70%;
     width: 100%;
+    overflow-y: hidden;
+}
+
+#choice-container:hover {
+    overflow-y: scroll;
 }
 
 .choice {
-    height: 100px;
-    width: 100%;
-    margin: auto;
+    color: rgb(17, 18, 19);
+    height: 50px;
+    width: 70%;
+    float: left;
+    margin-top: 10px;
+    border-bottom: rgb(32, 33, 35) solid 1px;
+    text-align: left;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-top: 12px;
+    overflow: hidden;
+}
+
+.choice:hover {
+    color: white;
+    border-color: white;
+}
+
+::-webkit-scrollbar {
     border-radius: 10px;
-    margin-top: 5px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(128, 127, 127);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: black;
+    border-radius: 10px;
+}
+
+#chatmainblock:hover {
+    overflow-y: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+#members-container {
+    float: right;
+    width: 20%;
+    height: 100vh;
     background-color: rgb(30, 33, 36);
+}
+
+#chat-title {
     text-align: center;
-    font-size: 200%;
-    padding-top: 25px;
+    margin: 0px;
+    vertical-align: bottom;
+    color: rgb(122, 123, 123);
+}
+
+.member {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+#members {
+    overflow: hidden;
+    height: 70%;
+    width: 100%;
+}
+
+#members:hover {
+    overflow-y: scroll;
 }
