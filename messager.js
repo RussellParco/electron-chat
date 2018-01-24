@@ -11,7 +11,8 @@ refreshrate = 250;
 
 $(document).ready(function() {
     document.getElementById("chatmainblock").addEventListener("scroll", function() {
-        scrollled = true;
+        scrolled = true;
+        console.log(scrolled);
     });
 });
 
@@ -141,9 +142,11 @@ function addMember() {
         request.send(data);
         document.getElementById("addmemberusername").value = "";
     }
+    updateMembers(chatID);
 }
 
 function sendMessage(e) {
+    scrolled = false;
     var message = document.getElementById("chatinput").value;
     var chatselect = document.getElementById("chatselect");
     var chatID = chatselect.options[chatselect.selectedIndex].value;
@@ -176,6 +179,9 @@ function sendMessage(e) {
 function receiveMessage() {
     var chatselect = document.getElementById("chatselect");
     var chatID = chatselect.options[chatselect.selectedIndex].value;
+    if (document.getElementById("chatmainblock").scrollTop == document.getElementById("chatmainblock").scrollHeight) {
+        scrolled = false;
+    }
 
     if (chatID != "") {
         var request = new XMLHttpRequest();

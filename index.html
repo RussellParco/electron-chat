@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>ElectroChat</title>
     <script src="login.js"></script>
@@ -16,33 +17,35 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="jumbotron">
-      <h1>ElectroChat</h1>
+        <h1>ElectroChat</h1>
     </div>
     <!-- All of the Node.js APIs are available in this renderer process. -->
     <div class="well">
-    <h3>Sign in</h3>
-    <form id="loginform">
-      Username:
-      <br>
-      <input type="text" class="form-control" id="username" autofocus>
-      <br>
-      Password:
-      <br>
-      <input type="password" class="form-control" id="password">
-      <br>
-      <input type="button" class="btn" value="Login" onclick="startlogin()">
-      <a href="signup.html" class="btn-link">Sign Up</a>
-      </form>
+        <h3>Sign in</h3>
+        <form id="loginform">
+            Username:
+            <br>
+            <input type="text" class="form-control" id="username" autofocus>
+            <br> Password:
+            <br>
+            <input type="password" class="form-control" id="password" onkeydown="enterlogin(e)">
+            <br>
+            <input type="button" class="btn" value="Login" onclick="startlogin()">
+            <a href="signup.html" class="btn-link">Sign Up</a>
+
+        </form>
     </div>
     <script>
-      if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null){
-        document.location.href = "main.html";
-      }
-      // You can also require other files to run in this process
-      require('./renderer.js')
+        if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null) {
+            document.location.href = "main.html";
+        }
+        // You can also require other files to run in this process
+        require('./renderer.js')
     </script>
-  </body>
+</body>
+
 </html>
