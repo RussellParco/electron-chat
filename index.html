@@ -1,34 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>A really gouch app</title>
-    <script src="login.js"></script>
-  </head>
-  <body>
-    <h1>Comsci Electron project</h1>
-    <p>SANITIZE INPUTS</p>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    <h3>Sign in</h3>
-    <form id="loginform">
-      Username:
-      <br>
-      <input type="text" id="username" autofocus>
-      <br>
-      Password:
-      <br>
-      <input type="password" id="password">
-      <br><br>
-      <input type="button" value="Login" onclick="startlogin()">
-    </form>
-    <a href="signup.html">Sign Up</a>
 
+<head>
+    <meta charset="UTF-8">
+    <title>ElectroChat</title>
+    <script src="login.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1>ElectroChat</h1>
+    </div>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <div class="well">
+        <h3>Sign in</h3>
+        <form id="loginform">
+            Username:
+            <br>
+            <input type="text" class="form-control" id="username" autofocus>
+            <br> Password:
+            <br>
+            <input type="password" class="form-control" id="password" onkeydown="enterlogin(e)">
+            <br>
+            <input type="button" class="btn" value="Login" onclick="startlogin()">
+            <a href="signup.html" class="btn-link">Sign Up</a>
+
+        </form>
+    </div>
     <script>
-      if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null){
-        document.location.href = "main.html";
-      }
-      // You can also require other files to run in this process
-      require('./renderer.js')
+        if (localStorage.getItem("Token") !== null && localStorage.getItem("userID") !== null) {
+            document.location.href = "main.html";
+        }
+        // You can also require other files to run in this process
+        require('./renderer.js')
     </script>
-  </body>
+</body>
+
 </html>

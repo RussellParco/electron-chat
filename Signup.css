@@ -1,0 +1,13 @@
+h1{
+  text-align: center;
+}
+.well{
+  background-color: lightblue;
+  width: 300px;
+  padding: 15px;
+  margin-left: 50px;
+}
+.jumbotron{
+  height: 150px;
+  margin-top: -30px;
+}
